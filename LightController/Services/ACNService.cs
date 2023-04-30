@@ -19,7 +19,8 @@ namespace LightController.Services
 
                 while (!cancellationToken.IsCancellationRequested)
                 {
-                    sender.Send(1, LightStatus.data.ToArray()).Wait();
+                    // priority is from 1 to 200 where 200 is most important
+                    sender.Send(1, LightStatus.data.ToArray(), 100).Wait();
                 }
             });
 
